@@ -18,11 +18,11 @@ router.post(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const existingUser = await UserModel.findOne({ email: email });
-
     if (existingUser) {
       throw new BadRequestError("Email in use");
     }
 
+    // save user
     const user = UserModel.build({ email, password });
     await user.save();
 
@@ -31,7 +31,6 @@ router.post(
 
     // Store it on session object
     req.session = { jwt: userJWT };
-
     return res.status(201).json(user);
   }
 );
