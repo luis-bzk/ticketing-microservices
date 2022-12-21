@@ -3,15 +3,19 @@ import { NextPage } from "next";
 
 import { useRequest } from "../../hooks";
 import { Errors } from "../../components";
+import { useRouter } from "next/router";
 
 const Signup: NextPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const router = useRouter();
+
   const { doRequest, errorMessages } = useRequest({
     url: "/api/users/sign-up",
     method: "post",
     body: { email, password },
+    onSuccess: () => router.push("/"),
   });
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -21,7 +25,7 @@ const Signup: NextPage = () => {
   };
 
   return (
-    <div>
+    <div className='p-3'>
       <form onSubmit={handleSubmit}>
         <h1 className='mb-3'>Signup</h1>
 
