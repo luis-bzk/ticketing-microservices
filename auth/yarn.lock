@@ -1292,6 +1292,14 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@lbc-ticketing/common@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@lbc-ticketing/common/-/common-1.0.4.tgz#e0e2c682eae29f75441a82eb7e936ffcb909c128"
+  integrity sha512-GHHRlp8i2s+ku5NX1fdC7ypP708EmA0hWFdlFKsAEfaISRW37mgtmdGtvzKxkKk5+14bhmcBMbx/s1V6ACtSZw==
+  dependencies:
+    express-validator "^6.14.2"
+    jsonwebtoken "^9.0.0"
+
 "@mapbox/node-pre-gyp@^1.0.10":
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/@mapbox/node-pre-gyp/-/node-pre-gyp-1.0.10.tgz#8e6735ccebbb1581e5a7e652244cadc8a844d03c"
@@ -3167,6 +3175,16 @@ jsonwebtoken@^8.5.1:
     lodash.once "^4.0.0"
     ms "^2.1.1"
     semver "^5.6.0"
+
+jsonwebtoken@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-9.0.0.tgz#d0faf9ba1cc3a56255fe49c0961a67e520c1926d"
+  integrity sha512-tuGfYXxkQGDPnLJ7SibiQgVgeDgfbPq2k2ICcbgqW8WxWLBAxKQM/ZCu/IT8SOSwmaYl4dpTFCW5xZv7YbbWUw==
+  dependencies:
+    jws "^3.2.2"
+    lodash "^4.17.21"
+    ms "^2.1.1"
+    semver "^7.3.8"
 
 jwa@^1.4.1:
   version "1.4.1"

@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 
 import "express-async-errors";
-import { NotFoundError } from "./errors";
-import { errorHandler } from "./middlewares";
+import { NotFoundError, errorHandler } from "@lbc-ticketing/common";
+
 import cookieSession from "cookie-session";
 import { currentUserRouter, signInRouter, signOutRouter, signUpRouter } from "./routes";
 

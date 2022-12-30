@@ -1,8 +1,8 @@
-FROM node:alpine
+FROM node:16-alpine
 
 WORKDIR /app
-COPY package.json ./
-RUN yarn install 
-COPY ./ ./
+COPY package.json .
+RUN npm install
+COPY . .
 
-CMD ["yarn", "dev"]
+CMD ["npm", "run", "dev"]

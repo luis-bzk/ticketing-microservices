@@ -3,7 +3,7 @@ import app from "../../app";
 
 it("Should return a 400 with invalid email", async () => {
   return request(app)
-    .post("/api/users/sign-in")
+    .post("/api/users/signin")
     .send({
       email: "emailemail.com",
       password: "123456",
@@ -12,16 +12,16 @@ it("Should return a 400 with invalid email", async () => {
 }, 30000);
 
 it("Should return a 400 with missing email or password", async () => {
-  await request(app).post("/api/users/sign-in").send({ email: "email@email.com" }).expect(400);
+  await request(app).post("/api/users/signin").send({ email: "email@email.com" }).expect(400);
 
-  await request(app).post("/api/users/sign-in").send({ password: "123456" }).expect(400);
+  await request(app).post("/api/users/signin").send({ password: "123456" }).expect(400);
 
-  await request(app).post("/api/users/sign-in").send({}).expect(400);
+  await request(app).post("/api/users/signin").send({}).expect(400);
 }, 30000);
 
 it("Should return a 400 when email that not exists is supplied", async () => {
   await request(app)
-    .post("/api/users/sign-in")
+    .post("/api/users/signin")
     .send({
       email: "email@email.com",
       password: "123456",
@@ -31,7 +31,7 @@ it("Should return a 400 when email that not exists is supplied", async () => {
 
 it("Should return a 400 when an incorrect password is supplied", async () => {
   await request(app)
-    .post("/api/users/sign-up")
+    .post("/api/users/signup")
     .send({
       email: "email@email.com",
       password: "123456",
@@ -39,7 +39,7 @@ it("Should return a 400 when an incorrect password is supplied", async () => {
     .expect(201);
 
   await request(app)
-    .post("/api/users/sign-in")
+    .post("/api/users/signin")
     .send({
       email: "email@email.com",
       password: "1234567890",
@@ -49,7 +49,7 @@ it("Should return a 400 when an incorrect password is supplied", async () => {
 
 it("Should return a 200 when given valid credentials", async () => {
   await request(app)
-    .post("/api/users/sign-up")
+    .post("/api/users/signup")
     .send({
       email: "email@email.com",
       password: "123456",
@@ -57,7 +57,7 @@ it("Should return a 200 when given valid credentials", async () => {
     .expect(201);
 
   await request(app)
-    .post("/api/users/sign-in")
+    .post("/api/users/signin")
     .send({
       email: "email@email.com",
       password: "123456",
@@ -67,7 +67,7 @@ it("Should return a 200 when given valid credentials", async () => {
 
 it("Should sets a cookie after successful login", async () => {
   await request(app)
-    .post("/api/users/sign-up")
+    .post("/api/users/signup")
     .send({
       email: "email@email.com",
       password: "123456",
@@ -75,7 +75,7 @@ it("Should sets a cookie after successful login", async () => {
     .expect(201);
 
   const response = await request(app)
-    .post("/api/users/sign-in")
+    .post("/api/users/signin")
     .send({
       email: "email@email.com",
       password: "123456",

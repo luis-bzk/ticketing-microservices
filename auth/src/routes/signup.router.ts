@@ -3,13 +3,12 @@ import { body } from "express-validator";
 
 import jwt from "jsonwebtoken";
 import { UserModel } from "../models";
-import { validateRequest } from "../middlewares";
-import { BadRequestError } from "../errors";
+import { BadRequestError, validateRequest } from "@lbc-ticketing/common";
 
 const router = express.Router();
 
 router.post(
-  "/api/users/sign-up",
+  "/api/users/signup",
   [
     body("email").isEmail().withMessage("Email must be valid"),
     body("password").trim().isLength({ min: 6, max: 20 }).withMessage("Password must be between 6 and 20 characters"),
@@ -27,7 +26,7 @@ router.post(
     await user.save();
 
     // Generate JWT
-    const userJWT = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_KEY!, { expiresIn: "1d" });
+    const userJWT = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_KEY!, { expiresIn: "100d" });
 
     // Store it on session object
     req.session = { jwt: userJWT };

@@ -4,13 +4,12 @@ import express, { Request, Response } from "express";
 
 import { UserModel } from "../models";
 import { Password } from "../services";
-import { BadRequestError } from "../errors";
-import { validateRequest } from "../middlewares";
+import { BadRequestError, validateRequest } from "@lbc-ticketing/common";
 
 const router = express.Router();
 
 router.post(
-  "/api/users/sign-in",
+  "/api/users/signin",
   [
     body("email").isEmail().withMessage("Email must be valid"),
     body("password").trim().notEmpty().withMessage("You must supply a password"),
@@ -31,7 +30,7 @@ router.post(
 
     // Generate JWT
     const userJWT = jwt.sign({ id: existingUser._id, email: existingUser.email }, process.env.JWT_KEY!, {
-      expiresIn: "1d",
+      expiresIn: "100d",
     });
 
     // Store it on session object
